@@ -19,6 +19,9 @@
 		A3937E722A83AE6F00348DC4 /* bet-chip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3937E6A2A83AE6F00348DC4 /* bet-chip.mp3 */; };
 		A3937E732A83AE6F00348DC4 /* drum-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3937E6B2A83AE6F00348DC4 /* drum-music.mp3 */; };
 		A3937E742A83AE6F00348DC4 /* highscore.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3937E6C2A83AE6F00348DC4 /* highscore.mp3 */; };
+		A3937E782A83B33B00348DC4 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E772A83B33B00348DC4 /* Modifiers.swift */; };
+		A3937E7B2A83BB8C00348DC4 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E7A2A83BB8C00348DC4 /* LogoView.swift */; };
+		A3937E7D2A83D01600348DC4 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E7C2A83D01600348DC4 /* ReelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		A3937E6A2A83AE6F00348DC4 /* bet-chip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bet-chip.mp3"; sourceTree = "<group>"; };
 		A3937E6B2A83AE6F00348DC4 /* drum-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "drum-music.mp3"; sourceTree = "<group>"; };
 		A3937E6C2A83AE6F00348DC4 /* highscore.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = highscore.mp3; sourceTree = "<group>"; };
+		A3937E772A83B33B00348DC4 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		A3937E7A2A83BB8C00348DC4 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		A3937E7C2A83D01600348DC4 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +75,10 @@
 			children = (
 				A3937E752A83AE7600348DC4 /* Sounds */,
 				A3937E572A83A7B500348DC4 /* RMITCasinoApp.swift */,
-				A3937E592A83A7B500348DC4 /* ContentView.swift */,
+				A3937E762A83B2DA00348DC4 /* Views */,
 				A3937E5B2A83A7B800348DC4 /* Assets.xcassets */,
 				A3937E5D2A83A7B800348DC4 /* Preview Content */,
+				A3937E792A83B34000348DC4 /* Helpers */,
 			);
 			path = RMITCasino;
 			sourceTree = "<group>";
@@ -97,6 +104,24 @@
 				A3937E682A83AE6F00348DC4 /* winning.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		A3937E762A83B2DA00348DC4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3937E592A83A7B500348DC4 /* ContentView.swift */,
+				A3937E7A2A83BB8C00348DC4 /* LogoView.swift */,
+				A3937E7C2A83D01600348DC4 /* ReelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A3937E792A83B34000348DC4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3937E772A83B33B00348DC4 /* Modifiers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3937E5A2A83A7B500348DC4 /* ContentView.swift in Sources */,
+				A3937E7B2A83BB8C00348DC4 /* LogoView.swift in Sources */,
+				A3937E7D2A83D01600348DC4 /* ReelView.swift in Sources */,
+				A3937E782A83B33B00348DC4 /* Modifiers.swift in Sources */,
 				A3937E582A83A7B500348DC4 /* RMITCasinoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
