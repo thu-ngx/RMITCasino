@@ -17,7 +17,7 @@ struct ContentView: View {
     @State var reels = [0, 1, 2]
     @State var coins = 100
     @State var betAmount = 10
-    @State var highscore = 0
+    @State var highscore = UserDefaults.standard.integer(forKey: "highscore")
     
     @State var isChooseBet10 = true
     @State var isChooseBet20 = false
@@ -55,6 +55,7 @@ struct ContentView: View {
     // MARK: HIGHSCORE LOGIC
     func  newHighscore() {
         highscore = coins
+        UserDefaults.standard.set(highscore, forKey: "highscore")
     }
     
     // MARK: PLAYER LOSING LOGIC
