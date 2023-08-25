@@ -10,18 +10,18 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-//    let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
+    //    let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
     
     let icons = ["apple","bar","bell"]
     
     @State var reels = [0, 1, 2]
     @State var coins = 100
     @State var betAmount = 10
-    @State var highscore = UserDefaults.standard.integer(forKey: "highscore")
+    @AppStorage("highscore") var highscore = 0
     
     @State var isChooseBet10 = true
     @State var isChooseBet20 = false
-    
+        
     // MARK: - SPIN LOGIC
     func spinReels() {
         reels = reels.map({ _ in
@@ -80,7 +80,7 @@ struct ContentView: View {
     // MARK: GAMEOVER LOGIC
     
     // MARK: RESET LOGIC
-        
+    
     
     var body: some View {
         ZStack {
@@ -147,12 +147,15 @@ struct ContentView: View {
                         HStack {
                             Text("20")
                                 .modifier(BetCapsuleModifier())
+                            
                             Image("casino-chips")
                                 .resizable()
+                                .opacity(isChooseBet20 ? 1 : 0)
                                 .modifier(CasinoChipModifier())
+                            
                         }
                     }
-
+                    
                     Spacer()
                     
                     // MARK: - BET 10$
@@ -162,6 +165,7 @@ struct ContentView: View {
                         HStack {
                             Image("casino-chips")
                                 .resizable()
+                                .opacity(isChooseBet10 ? 1 : 0)
                                 .modifier(CasinoChipModifier())
                             Text("10")
                                 .modifier(BetCapsuleModifier())
