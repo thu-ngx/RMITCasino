@@ -21,6 +21,8 @@ struct ContentView: View {
     
     @State var isChooseBet10 = true
     @State var isChooseBet20 = false
+    
+    @State var animatingIcon = true
         
     // MARK: - SPIN LOGIC
     func spinReels() {
@@ -120,14 +122,23 @@ struct ContentView: View {
                 
                 // MARK: - REEL SLOT MACHINE
                 VStack {
-                    ReelView(reelIcon: icons[reels[0]])
+                    ReelView(reelIcon: icons[reels[0]], animatingIcon: animatingIcon)
                     HStack {
-                        ReelView(reelIcon: icons[reels[1]])
-                        ReelView(reelIcon: icons[reels[2]])
+                        ReelView(reelIcon: icons[reels[1]], animatingIcon: animatingIcon)
+                        ReelView(reelIcon: icons[reels[2]], animatingIcon: animatingIcon)
                     }
                     
                     Button {
+                        withAnimation {
+                            animatingIcon = false
+                        }
+                        
                         spinReels()
+                        
+                        withAnimation {
+                            animatingIcon = true
+                        }
+                        
                         checkWinning()
                     } label: {
                         Image("spin")
