@@ -10,16 +10,75 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
+//    let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
+    
+    let icons = ["apple","bar","bell"]
     
     @State var reels = [0, 1, 2]
+    @State var coins = 100
+    @State var betAmount = 10
+    @State var highscore = 0
+    
+    @State var isChooseBet10 = true
+    @State var isChooseBet20 = false
     
     // MARK: - SPIN LOGIC
     func spinReels() {
-        reels[0] = Int.random(in: 0...icons.count-1)
-        reels[1] = Int.random(in: 0...icons.count-1)
-        reels[2] = Int.random(in: 0...icons.count-1)
+        reels = reels.map({ _ in
+            Int.random(in: 0...icons.count-1)
+        })
     }
+    
+    // MARK: GAME LOGIC FUNCTIONS
+    
+    // MARK: CHECKING WINNING LOGIC
+    func checkWinning() {
+        if (reels[0] == reels[1] && reels[1] == reels[2] && reels[2] == reels[0] ) {
+            // WINNING LOGIC
+            playerWins()
+            
+            // HIGH SCORE
+            if coins > highscore {
+                newHighscore()
+            }
+        } else {
+            // LOSING LOGIC
+            playerLoses()
+        }
+    }
+    
+    // MARK: PLAYER WINNING LOGIC
+    func playerWins() {
+        coins += betAmount*10
+    }
+    
+    // MARK: HIGHSCORE LOGIC
+    func  newHighscore() {
+        highscore = coins
+    }
+    
+    // MARK: PLAYER LOSING LOGIC
+    func playerLoses() {
+        coins -= betAmount
+    }
+    
+    // MARK: BET 20 LOGIC
+    func chooseBet20(){
+        betAmount = 20
+        isChooseBet20 = true
+        isChooseBet10 = false
+    }
+    
+    // MARK: BET 10 LOGIC
+    func chooseBet10(){
+        betAmount = 10
+        isChooseBet10 = true
+        isChooseBet20 = false
+    }
+    
+    // MARK: GAMEOVER LOGIC
+    
+    // MARK: RESET LOGIC
         
     
     var body: some View {
@@ -38,7 +97,7 @@ struct ContentView: View {
                         HStack {
                             Text("Your\nMoney".uppercased())
                                 .modifier(ScoreLabelStyle())
-                            Text("100")
+                            Text("\(coins)")
                                 .modifier(ScoreNumberlStyle())
                         }
                         .modifier(ScoreCapsuleStyle())
@@ -46,7 +105,7 @@ struct ContentView: View {
                     Spacer()
                     HStack {
                         HStack {
-                            Text("200")
+                            Text("\(highscore)")
                                 .modifier(ScoreNumberlStyle())
                             Text("High\nScore".uppercased())
                                 .modifier(ScoreLabelStyle())
@@ -68,6 +127,7 @@ struct ContentView: View {
                     
                     Button {
                         spinReels()
+                        checkWinning()
                     } label: {
                         Image("spin")
                             .resizable()
@@ -80,25 +140,32 @@ struct ContentView: View {
                 HStack {
                     
                     // MARK: - BET 20$
-                    HStack {
-                        Text("20")
-                            .modifier(BetCapsuleModifier())
-                        Image("casino-chips")
-                            .resizable()
-                            .modifier(CasinoChipModifier())
+                    Button {
+                        chooseBet20()
+                    } label: {
+                        HStack {
+                            Text("20")
+                                .modifier(BetCapsuleModifier())
+                            Image("casino-chips")
+                                .resizable()
+                                .modifier(CasinoChipModifier())
+                        }
                     }
-                    
+
                     Spacer()
                     
                     // MARK: - BET 10$
-                    HStack {
-                        Image("casino-chips")
-                            .resizable()
-                            .modifier(CasinoChipModifier())
-                        Text("20")
-                            .modifier(BetCapsuleModifier())
+                    Button {
+                        chooseBet10()
+                    } label: {
+                        HStack {
+                            Image("casino-chips")
+                                .resizable()
+                                .modifier(CasinoChipModifier())
+                            Text("10")
+                                .modifier(BetCapsuleModifier())
+                        }
                     }
-                    
                 }
                 
             } // VStack
