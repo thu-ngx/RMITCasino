@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    //    let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
+        let icons = ["apple","bar","bell","cherry","clover","diamond", "grape", "heart", "horseshoe","lemon","melon","money","orange"]
     
-    let icons = ["apple","bar","bell"]
+//    let icons = ["apple","bar","bell"]
     
     @State var reels = [0, 1, 2]
     @State var coins = 100
@@ -23,12 +24,16 @@ struct ContentView: View {
     @State var isChooseBet20 = false
     
     @State var animatingIcon = true
-        
+    
+    @State var showGameoverMessage = false
+    @State var showInfoView = false
+    
     // MARK: - SPIN LOGIC
     func spinReels() {
         reels = reels.map({ _ in
             Int.random(in: 0...icons.count-1)
         })
+        playSound(sound: "spin", type: "mp3")
     }
     
     // MARK: GAME LOGIC FUNCTIONS
@@ -42,6 +47,8 @@ struct ContentView: View {
             // HIGH SCORE
             if coins > highscore {
                 newHighscore()
+            } else {
+                playSound(sound: "winning", type: "mp3")
             }
         } else {
             // LOSING LOGIC
@@ -80,6 +87,12 @@ struct ContentView: View {
     }
     
     // MARK: GAMEOVER LOGIC
+    func isGameover() {
+        if coins < 0 {
+            showGameoverMessage = true
+            playSound(sound: "gameover", type: "mp3")
+        }
+    }
     
     // MARK: RESET LOGIC
     
@@ -93,6 +106,19 @@ struct ContentView: View {
             // MARK: - LOGO HEADER
             VStack {
                 LogoView()
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        showInfoView = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 10)
+                    }
+
+                }
                 
                 // MARK: - SCORE
                 HStack {
@@ -128,6 +154,7 @@ struct ContentView: View {
                         ReelView(reelIcon: icons[reels[2]], animatingIcon: animatingIcon)
                     }
                     
+                    // MARK: SPIN
                     Button {
                         withAnimation {
                             animatingIcon = false
@@ -140,6 +167,8 @@ struct ContentView: View {
                         }
                         
                         checkWinning()
+                        
+                        isGameover()
                     } label: {
                         Image("spin")
                             .resizable()
@@ -186,7 +215,56 @@ struct ContentView: View {
                 
             } // VStack
             .padding()
+            
+            // MARK: GAMEOVER MESSAGE
+            if showGameoverMessage {
+                ZStack {
+                    Color("rmit-blue")
+                    VStack {
+                        Text("GAME OVER")
+                            .font(.system(size: 30))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .foregroundColor(.white)
+                            .frame(width: 280)
+                            .background(Color("rmit-red"))
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Image("rmit-casino-logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200)
+                            Text("You lost all your money!")
+                                .font(.system(size: 17))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                            Button {
+                                showGameoverMessage = false
+                                coins = 100
+                            } label: {
+                                Text("New game".uppercased())
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 20)
+                                    .background(
+                                    Capsule()
+                                        .fill(Color("rmit-red"))
+                                    )
+                            }
+                        }
+                        Spacer()
+
+                    }
+                }
+                .frame(width: 280, height: 400)
+                .cornerRadius(20)
+            }
+            
         } // ZStack
+        .sheet(isPresented: $showInfoView) {
+            InfoView()
+        }
     }
 }
 

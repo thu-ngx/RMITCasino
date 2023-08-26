@@ -22,6 +22,8 @@
 		A3937E782A83B33B00348DC4 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E772A83B33B00348DC4 /* Modifiers.swift */; };
 		A3937E7B2A83BB8C00348DC4 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E7A2A83BB8C00348DC4 /* LogoView.swift */; };
 		A3937E7D2A83D01600348DC4 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3937E7C2A83D01600348DC4 /* ReelView.swift */; };
+		A3D593B92A98CFB9000F2753 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593B82A98CFB9000F2753 /* PlaySound.swift */; };
+		A3D593BB2A99161D000F2753 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593BA2A99161D000F2753 /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		A3937E772A83B33B00348DC4 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		A3937E7A2A83BB8C00348DC4 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		A3937E7C2A83D01600348DC4 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
+		A3D593B82A98CFB9000F2753 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		A3D593BA2A99161D000F2753 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 				A3937E592A83A7B500348DC4 /* ContentView.swift */,
 				A3937E7A2A83BB8C00348DC4 /* LogoView.swift */,
 				A3937E7C2A83D01600348DC4 /* ReelView.swift */,
+				A3D593BA2A99161D000F2753 /* InfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				A3937E772A83B33B00348DC4 /* Modifiers.swift */,
+				A3D593B82A98CFB9000F2753 /* PlaySound.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -203,10 +209,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3937E5A2A83A7B500348DC4 /* ContentView.swift in Sources */,
+				A3D593B92A98CFB9000F2753 /* PlaySound.swift in Sources */,
 				A3937E7B2A83BB8C00348DC4 /* LogoView.swift in Sources */,
 				A3937E7D2A83D01600348DC4 /* ReelView.swift in Sources */,
 				A3937E782A83B33B00348DC4 /* Modifiers.swift in Sources */,
 				A3937E582A83A7B500348DC4 /* RMITCasinoApp.swift in Sources */,
+				A3D593BB2A99161D000F2753 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
